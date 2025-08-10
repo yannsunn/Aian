@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
 interface ImageSliderProps {
@@ -9,9 +9,11 @@ interface ImageSliderProps {
   className?: string
   width?: number
   height?: number
+  autoPlay?: boolean
+  interval?: number
 }
 
-const ImageSlider: React.FC<ImageSliderProps> = ({ images, alt, className }) => {
+const ImageSlider: React.FC<ImageSliderProps> = ({ images, alt, className, autoPlay = false, interval = 5000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set())
   const [touchStart, setTouchStart] = useState<number | null>(null)
@@ -22,6 +24,29 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, alt, className }) => 
   const handleImageError = (index: number) => {
     setImageErrors(prev => new Set([...prev, index]))
   }
+
+  // Navigation functions
+  const goToPrevious = () => {
+    const isFirstSlide = currentIndex === 0
+    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1
+    setCurrentIndex(newIndex)
+  }
+
+  const goToNext = () => {
+    const isLastSlide = currentIndex === images.length - 1
+    const newIndex = isLastSlide ? 0 : currentIndex + 1
+    setCurrentIndex(newIndex)
+  }
+  
+  // Auto-play functionality
+  useEffect(() => {
+    if (autoPlay && images.length > 1) {
+      const timer = setInterval(() => {
+        goToNext()
+      }, interval)
+      return () => clearInterval(timer)
+    }
+  }, [currentIndex, autoPlay, interval, images.length])
 
   // スワイプ処理
   const minSwipeDistance = 50
@@ -42,18 +67,6 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, alt, className }) => 
     const isRightSwipe = distance < -minSwipeDistance
     if (isLeftSwipe) goToNext()
     if (isRightSwipe) goToPrevious()
-  }
-
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1
-    setCurrentIndex(newIndex)
-  }
-
-  const goToNext = () => {
-    const isLastSlide = currentIndex === images.length - 1
-    const newIndex = isLastSlide ? 0 : currentIndex + 1
-    setCurrentIndex(newIndex)
   }
 
   const goToSlide = (slideIndex: number) => {
