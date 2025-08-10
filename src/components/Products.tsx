@@ -43,13 +43,13 @@ const categories: Category[] = [
     ]
   },
   {
-    id: 'outlet',
-    name: 'アウトレット',
-    description: 'お求めやすい価格のアウトレット製品',
+    id: 'outdoor',
+    name: 'アウトドア',
+    description: 'アウトドアで使用できる製品',
     images: [
-      '/images/products/outlet/S__83738756_0.jpg',
-      '/images/products/outlet/S__83738758_0.jpg',
-      '/images/products/outlet/S__83738759_0.jpg'
+      '/images/products/outdoor/S__83738756_0.jpg',
+      '/images/products/outdoor/S__83738758_0.jpg',
+      '/images/products/outdoor/S__83738759_0.jpg'
     ]
   },
   {
