@@ -39,25 +39,22 @@ const Hero = () => {
       className="relative h-screen text-white overflow-hidden"
       style={{ paddingTop: '60px' }}
     >
-      {/* Video Background */}
+      {/* Image Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+        <Image
+          src="/images/products/home/S__83738739.jpg"
+          alt="Vintage Iron Works - 職人の技術"
+          fill
+          priority
+          className="object-cover"
           style={{ 
-            filter: 'brightness(1.6) contrast(2.2) saturate(1.5) drop-shadow(0 4px 20px rgba(0,0,0,0.6))',
-            boxShadow: 'inset 0 0 80px rgba(0,0,0,0.2)',
+            filter: 'brightness(0.8) contrast(1.1) saturate(1.2)',
             opacity: 1,
             zIndex: 5,
           }}
-        >
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
-          {/* Fallback for browsers that don't support video */}
-        </video>
-        
+        />
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" style={{ zIndex: 10 }} />
       </div>
 
 
