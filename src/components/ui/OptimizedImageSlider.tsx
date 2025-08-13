@@ -174,7 +174,7 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
             fill
             className={cn(
               objectFit === 'cover' ? 'object-cover' : 
-              objectFit === 'contain' ? 'object-contain bg-white' :
+              objectFit === 'contain' ? 'object-contain' :
               objectFit === 'fill' ? 'object-fill' :
               objectFit === 'none' ? 'object-none' :
               'object-scale-down',

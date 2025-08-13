@@ -261,6 +261,7 @@ const OptimizedProducts = memo(() => {
                 interval={2000}
                 priority={selectedCategory === 'home'}
                 preloadCount={2}
+                objectFit="contain"
               />
             </div>
           </div>
