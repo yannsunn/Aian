@@ -46,6 +46,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, alt, className, autoP
       }, interval)
       return () => clearInterval(timer)
     }
+    return undefined
   }, [currentIndex, autoPlay, interval, images.length])
 
   // スワイプ処理
