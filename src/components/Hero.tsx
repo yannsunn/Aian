@@ -5,6 +5,13 @@ import React, { useCallback, useMemo, useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import useIntersectionObserver from '@/hooks/useIntersectionObserver'
 import Button from '@/components/ui/Button'
+import dynamic from 'next/dynamic'
+
+// 動的インポートで最適化されたImageSlider
+const OptimizedImageSlider = dynamic(() => import('./ui/OptimizedImageSlider'), {
+  loading: () => <div className="absolute inset-0 bg-gray-900" />,
+  ssr: false
+})
 
 const Hero = () => {
   const [sectionRef, isVisible] = useIntersectionObserver({ 
@@ -15,6 +22,15 @@ const Hero = () => {
   // ニューロマーケティング：限定在庫カウントダウン
   const [stockCount, setStockCount] = useState(7)
   const [viewerCount, setViewerCount] = useState(23)
+  
+  // ヒーロー画像のリスト
+  const heroImages = [
+    '/images/products/home/S__83738739.jpg',
+    '/images/products/home/S__83738740_0.jpg',
+    '/images/products/home/S__83738742_0.jpg',
+    '/images/products/home/S__83738743_0.jpg',
+    '/images/products/home/S__83738744_0.jpg'
+  ]
   
   useEffect(() => {
     // リアルタイム閲覧者数シミュレーション
@@ -39,22 +55,25 @@ const Hero = () => {
       className="relative h-screen text-white overflow-hidden"
       style={{ paddingTop: '60px' }}
     >
-      {/* Image Background */}
+      {/* Image Background with Slider */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/products/home/S__83738739.jpg"
-          alt="Vintage Iron Works - 職人の技術"
-          fill
-          priority
-          className="object-cover"
-          style={{ 
-            filter: 'brightness(0.8) contrast(1.1) saturate(1.2)',
-            opacity: 1,
-            zIndex: 5,
-          }}
-        />
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" style={{ zIndex: 10 }} />
+        <div className="absolute inset-0" style={{ zIndex: 5 }}>
+          <OptimizedImageSlider
+            images={heroImages}
+            alt="Vintage Iron Works - 職人の技術"
+            className="w-full h-full"
+            autoPlay={true}
+            interval={3000}
+            priority={true}
+            preloadCount={2}
+            objectFit="cover"
+            showIndicators={true}
+            showControls={false}
+          />
+        </div>
+        {/* Enhanced overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" style={{ zIndex: 10 }} />
+        <div className="absolute inset-0 bg-black/20" style={{ zIndex: 11 }} />
       </div>
 
 

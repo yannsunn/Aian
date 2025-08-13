@@ -12,6 +12,9 @@ interface OptimizedImageSliderProps {
   interval?: number
   priority?: boolean
   preloadCount?: number
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+  showIndicators?: boolean
+  showControls?: boolean
 }
 
 const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({ 
@@ -21,7 +24,10 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
   autoPlay = false, 
   interval = 5000,
   priority = false,
-  preloadCount = 2
+  preloadCount = 2,
+  objectFit = 'contain',
+  showIndicators = true,
+  showControls = true
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]))
@@ -166,7 +172,14 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
             src={images[currentIndex]}
             alt={`${alt} - ${currentIndex + 1}/${images.length}`}
             fill
-            className="object-contain bg-white"
+            className={cn(
+              objectFit === 'cover' ? 'object-cover' : 
+              objectFit === 'contain' ? 'object-contain bg-white' :
+              objectFit === 'fill' ? 'object-fill' :
+              objectFit === 'none' ? 'object-none' :
+              'object-scale-down',
+              'transition-opacity duration-500'
+            )}
             sizes={imageSizes.default}
             priority={priority || currentIndex === 0}
             quality={85}
@@ -178,7 +191,7 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
         </div>
 
         {/* Enhanced Navigation */}
-        {images.length > 1 && (
+        {images.length > 1 && showControls && (
           <>
             <button
               onClick={goToPrevious}
@@ -201,8 +214,9 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
             </button>
 
             {/* Progress Indicators */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
-              {images.map((_, index) => (
+            {showIndicators && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
+                {images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
@@ -215,8 +229,9 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
                   aria-label={`画像 ${index + 1}`}
                   aria-current={currentIndex === index}
                 />
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             {/* Image Counter */}
             <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium z-30">
