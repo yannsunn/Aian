@@ -29,6 +29,7 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
   showIndicators = true,
   showControls = true
 }) => {
+  // 初期表示は必ず0番目（1枚目）から始める
   const [currentIndex, setCurrentIndex] = useState(0)
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]))
   const [touchStart, setTouchStart] = useState<number | null>(null)
@@ -37,6 +38,11 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
   const intervalRef = useRef<NodeJS.Timeout>()
   const observerRef = useRef<IntersectionObserver>()
   const containerRef = useRef<HTMLDivElement>(null)
+  
+  // コンポーネントマウント時に確実に0番目を表示
+  useEffect(() => {
+    setCurrentIndex(0)
+  }, [images])
   
   // プリロード戦略
   useEffect(() => {
@@ -84,7 +90,10 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
       (entries) => {
         const [entry] = entries
         if (entry.isIntersecting && autoPlay && images.length > 1) {
-          intervalRef.current = setInterval(goToNext, interval)
+          // 初回表示時は少し遅延を入れてから自動再生を開始
+          setTimeout(() => {
+            intervalRef.current = setInterval(goToNext, interval)
+          }, 500)
         } else {
           if (intervalRef.current) {
             clearInterval(intervalRef.current)
