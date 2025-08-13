@@ -12,12 +12,6 @@ const OptimizedImageSlider = dynamic(() => import('./ui/OptimizedImageSlider'), 
   ssr: false
 })
 
-// シンプルなImageSlider（受注生産用）
-const SimpleImageSlider = dynamic(() => import('./ui/SimpleImageSlider'), {
-  loading: () => <div className="aspect-video bg-gray-200 animate-pulse rounded-lg" />,
-  ssr: false
-})
-
 interface Category {
   id: string
   name: string
@@ -260,24 +254,16 @@ const OptimizedProducts = memo(() => {
           {/* メイン画像スライダー */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
             <div className="relative aspect-[16/10] md:aspect-[16/9]">
-              {selectedCategory === 'custom' ? (
-                <SimpleImageSlider
-                  images={currentCategory.images}
-                  alt={currentCategory.name}
-                  className="w-full h-full"
-                />
-              ) : (
-                <OptimizedImageSlider
-                  images={currentCategory.images}
-                  alt={currentCategory.name}
-                  className="w-full h-full"
-                  autoPlay={isAutoPlay}
-                  interval={2000}
-                  priority={selectedCategory === 'home'}
-                  preloadCount={2}
-                  objectFit="contain"
-                />
-              )}
+              <OptimizedImageSlider
+                images={currentCategory.images}
+                alt={currentCategory.name}
+                className="w-full h-full"
+                autoPlay={isAutoPlay}
+                interval={2000}
+                priority={selectedCategory === 'home'}
+                preloadCount={2}
+                objectFit="contain"
+              />
             </div>
           </div>
 

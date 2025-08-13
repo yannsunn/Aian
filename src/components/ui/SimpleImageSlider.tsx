@@ -40,13 +40,14 @@ const SimpleImageSlider: React.FC<SimpleImageSliderProps> = ({
   return (
     <div className={cn("relative w-full h-full overflow-hidden group", className)}>
       {/* メイン画像 */}
-      <div className="relative w-full h-full flex items-center justify-center bg-gray-100">
-        {/* 通常のimgタグを使用 - Next.js Imageコンポーネントの問題を回避 */}
-        <img
+      <div className="relative w-full h-full">
+        <Image
           src={images[currentIndex]}
           alt={`${alt} - ${currentIndex + 1}/${images.length}`}
-          className="max-w-full max-h-full object-contain"
-          style={{ width: 'auto', height: 'auto' }}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+          priority
         />
       </div>
 
