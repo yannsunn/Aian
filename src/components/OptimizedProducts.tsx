@@ -25,7 +25,6 @@ const categories: Category[] = [
     name: '住宅施工',
     description: '住宅に設置するアイアン製品の施工例',
     images: [
-      '/images/products/home/S__83738760.jpg',  // 1枚目（新しい画像）
       '/images/products/home/S__83738739.jpg',
       '/images/products/home/S__83738740_0.jpg',
       '/images/products/home/S__83738742_0.jpg',
@@ -64,6 +63,7 @@ const categories: Category[] = [
     name: '受注生産',
     description: 'お客様のご要望に合わせた完全オーダーメイド製品',
     images: [
+      '/images/products/custom-order/S__83738760.jpg',  // 1枚目（新しい画像）
       '/images/products/custom-order/S__83738761.jpg'
     ]
   }
