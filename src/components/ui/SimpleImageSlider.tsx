@@ -16,6 +16,13 @@ const SimpleImageSlider: React.FC<SimpleImageSliderProps> = ({
   className
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  
+  // デバッグ: 受け取った画像を確認
+  React.useEffect(() => {
+    console.log('SimpleImageSlider - images:', images)
+    console.log('SimpleImageSlider - currentIndex:', currentIndex)
+    console.log('SimpleImageSlider - current image:', images[currentIndex])
+  }, [images, currentIndex])
 
   const goToPrevious = () => {
     setCurrentIndex(prev => prev === 0 ? images.length - 1 : prev - 1)
@@ -48,6 +55,13 @@ const SimpleImageSlider: React.FC<SimpleImageSliderProps> = ({
           className="object-contain"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
           priority={currentIndex === 0}
+          onError={(e) => {
+            console.error('SimpleImageSlider - Failed to load image:', images[currentIndex])
+            console.error('Error details:', e)
+          }}
+          onLoad={() => {
+            console.log('SimpleImageSlider - Successfully loaded image:', images[currentIndex])
+          }}
         />
       </div>
 
