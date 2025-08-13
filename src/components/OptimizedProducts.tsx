@@ -258,7 +258,7 @@ const OptimizedProducts = memo(() => {
                 alt={currentCategory.name}
                 className="w-full h-full"
                 autoPlay={isAutoPlay}
-                interval={3000}
+                interval={2000}
                 priority={selectedCategory === 'home'}
                 preloadCount={2}
               />
