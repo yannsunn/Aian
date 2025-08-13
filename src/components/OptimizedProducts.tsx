@@ -152,16 +152,20 @@ const OptimizedProducts = memo(() => {
   const [isAutoPlay, setIsAutoPlay] = useState(true)
 
   // メモ化された現在のカテゴリー
-  const currentCategory = useMemo(
-    () => categories.find(cat => cat.id === selectedCategory) || categories[0],
-    [selectedCategory]
-  )
+  const currentCategory = useMemo(() => {
+    const category = categories.find(cat => cat.id === selectedCategory) || categories[0]
+    console.log('Current selected category:', selectedCategory)
+    console.log('Current category data:', category)
+    return category
+  }, [selectedCategory])
 
   // メモ化されたカテゴリー選択ハンドラー
   const handleCategorySelect = useCallback((categoryId: string) => {
+    console.log('Selecting category:', categoryId)
     setSelectedCategory(categoryId)
     // カテゴリー変更時にプリロード
     const category = categories.find(cat => cat.id === categoryId)
+    console.log('Found category:', category)
     if (category && category.images.length > 0) {
       const img = new window.Image()
       img.src = category.images[0]
