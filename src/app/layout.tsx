@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Vintage Iron Works' }],
   applicationName: 'Vintage Iron Works',
   generator: 'Next.js',
-  manifest: '/manifest.json',
+  // manifest: '/manifest.json', // PWA未実装のためコメントアウト
   openGraph: {
     title: 'Vintage Iron Works - ヴィンテージアイアン製品',
     description: '溶接歴40年のパートナーとの協業で生み出す、ヴィンテージ風アイアン製品。',
@@ -80,34 +80,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         
-        {/* プリロード - クリティカルリソース */}
-        <link 
-          rel="preload" 
-          href="/_next/static/css/app.css" 
-          as="style" 
-          crossOrigin="anonymous"
-        />
-        <link 
-          rel="preload" 
-          href="/fonts/inter-var.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous"
-        />
-        
-        {/* モジュールプリロード - 重要なJavaScript */}
-        <link 
-          rel="modulepreload" 
-          href="/_next/static/chunks/main.js"
-          crossOrigin="anonymous"
-        />
-        
-        {/* プリフェッチ - 次に訪問される可能性の高いページ */}
-        <link rel="prefetch" href="/products" />
-        <link rel="prefetch" href="/contact" />
-        
-        {/* プリレンダー - 重要な次ページ */}
-        <link rel="prerender" href="/products" />
+        {/* プリロードは削除 - Next.jsが自動的に処理 */}
         
         {/* Early Hints対応 */}
         <meta httpEquiv="Link" content="</images/hero.jpg>; rel=preload; as=image" />
@@ -117,32 +90,6 @@ export default function RootLayout({
       </head>
       <body className="font-sans leading-relaxed text-gray-800 antialiased">
         <SecurityFeatures />
-        
-        {/* Service Worker登録 */}
-        <Script
-          id="service-worker"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                  navigator.serviceWorker.register('/sw.js').then(
-                    (registration) => {
-                      console.log('Service Worker registered:', registration.scope);
-                    },
-                    (error) => {
-                      console.error('Service Worker registration failed:', error);
-                    }
-                  );
-                });
-              }
-            `
-          }}
-        />
-        
-        
-        
-        
         
         <main className="min-h-screen">
           {children}
