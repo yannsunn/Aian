@@ -41,7 +41,6 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
   
   // 画像配列が変更された時に確実に0番目を表示
   useEffect(() => {
-    console.log('Image slider reset - images:', images)
     setCurrentIndex(0)
     setLoadedImages(new Set([0]))
   }, [images.length, images[0]]) // 画像の数または最初の画像が変わった時のみリセット
@@ -182,7 +181,6 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
           <Image
             src={images[currentIndex]}
             alt={`${alt} - ${currentIndex + 1}/${images.length}`}
-            onError={() => console.error(`Failed to load image: ${images[currentIndex]}`)}
             fill
             className={cn(
               objectFit === 'cover' ? 'object-cover' : 
