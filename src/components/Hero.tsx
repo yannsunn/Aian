@@ -87,31 +87,31 @@ const Hero = () => {
           
 
           {/* クリーンで高級感のあるヘッドライン */}
-          <div className="mb-6">
-            <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-black/30 backdrop-blur-sm rounded border border-white/20">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <div className="mb-6 md:mb-8">
+            <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-amber-500/30 to-orange-500/30 backdrop-blur-md rounded-full border-2 border-amber-400/50 shadow-lg animate-pulse">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
-              <span className="text-white font-medium text-sm tracking-wide">職人の技術と伝統</span>
+              <span className="text-white font-bold text-xs sm:text-sm md:text-base tracking-wider uppercase">職人の技術と伝統</span>
             </div>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light mb-6 sm:mb-8 tracking-tight text-white leading-tight">
-            <span className="block mb-2 sm:mb-4 font-thin text-2xl sm:text-3xl md:text-5xl">最高品質の</span>
-            <span className="block font-bold text-4xl sm:text-5xl md:text-7xl lg:text-8xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-4 sm:mb-6 md:mb-8 tracking-tight text-white leading-tight px-2">
+            <span className="block mb-1 sm:mb-2 md:mb-4 font-thin text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">最高品質の</span>
+            <span className="block font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
               アイアン製品
             </span>
           </h1>
 
           {/* Psychological trigger: Social proof with neuroscience */}
-          <div className="inline-flex items-center gap-3 mb-6 px-4 py-2 bg-black/30 backdrop-blur-md rounded-full border border-white/20">
+          <div className="inline-flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-black/30 backdrop-blur-md rounded-full border border-white/20">
             <div className="flex -space-x-2">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 border-2 border-white/50" />
+                <div key={i} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 border-2 border-white/50" />
               ))}
             </div>
-            <span className="text-sm text-white/90 font-medium">多数のお客様にご愛顧いただいています</span>
-            <span className="text-amber-400">★★★★★</span>
+            <span className="text-xs sm:text-sm text-white/90 font-medium">多数のお客様にご愛顧いただいています</span>
+            <span className="text-amber-400 text-xs sm:text-sm">★★★★★</span>
           </div>
 
           {/* シンプルで洗練された価値提案 */}
@@ -156,13 +156,27 @@ const Hero = () => {
             </div>
 
             
-            {/* 控えめな信頼性指標 */}
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-400 px-4">
-              <span>長期品質保証</span>
-              <span className="hidden sm:inline">•</span>
-              <span>全国配送対応</span>
-              <span className="hidden sm:inline">•</span>
-              <span>オーダーメイド可</span>
+            {/* 信頼性指標 - より目立つように */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 px-2 sm:px-4">
+              <div className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/30">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-xs sm:text-sm md:text-base text-white font-medium">長期品質保証</span>
+              </div>
+              <div className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/30">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                  <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
+                </svg>
+                <span className="text-xs sm:text-sm md:text-base text-white font-medium">全国配送対応</span>
+              </div>
+              <div className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-1 sm:py-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-sm rounded-full border border-amber-400/50 shadow-md">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                </svg>
+                <span className="text-xs sm:text-sm md:text-base text-white font-bold">オーダーメイド可</span>
+              </div>
             </div>
           </div>
         </div>

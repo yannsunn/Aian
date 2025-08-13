@@ -91,30 +91,30 @@ const Contact = () => {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 })
 
   return (
-    <section ref={sectionRef} id="contact" className="py-32 bg-slate-100">
-      <div className="container-custom">
+    <section ref={sectionRef} id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-slate-100">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className={cn(
-          'text-center mb-20 transition-all duration-1000',
+          'text-center mb-12 sm:mb-16 md:mb-20 transition-all duration-1000',
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}>
           <div className="inline-block">
-            <h2 className="text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 md:mb-6 tracking-tight">
               お問い合わせ
             </h2>
-            <div className="h-1 w-24 mx-auto bg-blue-600 rounded-full shadow-lg" />
+            <div className="h-1 w-20 sm:w-24 mx-auto bg-blue-600 rounded-full shadow-lg" />
           </div>
-          <p className="text-xl text-slate-600 mt-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 mt-4 sm:mt-6 md:mt-8 max-w-3xl mx-auto leading-relaxed px-4">
             オーダーメイドアイアン製品に関するご相談、お見積もりなど
             <span className="text-blue-600 font-semibold">お気軽にお問い合わせ</span>
             ください
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           {/* Contact Form */}
           <Card variant="premium" className={cn(
-            'p-8 transition-all duration-1000',
+            'p-4 sm:p-6 md:p-8 transition-all duration-1000',
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           )}>
             <div className="absolute inset-0 bg-white rounded-3xl" />

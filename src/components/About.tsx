@@ -59,20 +59,20 @@ const About = () => {
   ]
 
   return (
-    <section ref={sectionRef} id="about" className="py-32 bg-slate-50">
-      <div className="container-custom">
+    <section ref={sectionRef} id="about" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-slate-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className={cn(
-          'text-center mb-20 transition-all duration-1000',
+          'text-center mb-12 sm:mb-16 md:mb-20 transition-all duration-1000',
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}>
           <div className="inline-block">
-            <h2 className="text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 md:mb-6 tracking-tight">
               会社概要
             </h2>
-            <div className="h-1 w-24 mx-auto bg-blue-600 rounded-full shadow-lg" />
+            <div className="h-1 w-20 sm:w-24 mx-auto bg-blue-600 rounded-full shadow-lg" />
           </div>
-          <p className="text-xl text-slate-600 mt-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 mt-4 sm:mt-6 md:mt-8 max-w-3xl mx-auto leading-relaxed px-4">
             長年にわたりアイアン家具製作の最前線で
             <span className="text-blue-600 font-semibold">職人の技と革新</span>
             を追求し続けています
@@ -84,16 +84,16 @@ const About = () => {
           'mb-20 transition-all duration-1000',
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         )}>
-          <Card variant="premium" className="p-12 text-center">
+          <Card variant="premium" className="p-6 sm:p-8 md:p-10 lg:p-12 text-center">
             <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
             <div className="relative z-10">
-              <h3 className="text-4xl font-bold text-slate-900 mb-6">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">
                 企業理念
               </h3>
-              <blockquote className="text-2xl text-slate-700 font-light italic leading-relaxed max-w-4xl mx-auto">
+              <blockquote className="text-lg sm:text-xl md:text-2xl text-slate-700 font-light italic leading-relaxed max-w-4xl mx-auto px-2 sm:px-4">
                 「鉄に魂を込めて、お客様の想いを形にする」
                 <br />
-                <span className="text-lg text-slate-600 not-italic mt-4 block">
+                <span className="text-sm sm:text-base md:text-lg text-slate-600 not-italic mt-2 sm:mt-4 block">
                   私たちは単なるアイアン製品メーカーではありません。
                   お客様の夢と想いを、職人の技術で形にする
                   <span className="text-blue-600 font-semibold">クリエイティブパートナー</span>
@@ -106,7 +106,7 @@ const About = () => {
 
         {/* Company Values Grid */}
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {aboutItems.map((item, index) => (
               <Card
                 key={index}
