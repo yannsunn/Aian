@@ -208,74 +208,11 @@ export default function RootLayout({
           }}
         />
         
-        {/* Intersection Observer による遅延読み込み */}
-        <Script
-          id="lazy-loading"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries) => {
-                  entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                      const img = entry.target;
-                      img.src = img.dataset.src;
-                      img.classList.add('loaded');
-                      imageObserver.unobserve(img);
-                    }
-                  });
-                }, {
-                  rootMargin: '50px 0px',
-                  threshold: 0.01
-                });
-                
-                document.querySelectorAll('img[data-src]').forEach(img => {
-                  imageObserver.observe(img);
-                });
-              }
-            `
-          }}
-        />
         
         <main className="min-h-screen">
           {children}
         </main>
         
-        {/* リソースヒント更新 */}
-        <Script
-          id="resource-hints"
-          strategy="idle"
-          dangerouslySetInnerHTML={{
-            __html: `
-              // 動的なリソースヒント更新
-              function updateResourceHints() {
-                const currentPath = window.location.pathname;
-                
-                // パスに基づいてプリフェッチを更新
-                fetch('/api/edge-optimize', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ currentPath })
-                })
-                .then(res => res.json())
-                .then(data => {
-                  data.hints?.forEach(hint => {
-                    const link = document.createElement('link');
-                    link.rel = 'prefetch';
-                    link.href = hint;
-                    link.crossOrigin = 'anonymous';
-                    document.head.appendChild(link);
-                  });
-                });
-              }
-              
-              // ページ遷移時に更新
-              if ('navigation' in window) {
-                navigation.addEventListener('navigate', updateResourceHints);
-              }
-            `
-          }}
-        />
       </body>
     </html>
   )

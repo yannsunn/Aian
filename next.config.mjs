@@ -16,18 +16,12 @@ const nextConfig = {
   compress: true,
   generateEtags: true,
   
-  // 実験的機能 - 最大最適化
+  // 実験的機能 - 安定した設定のみ
   experimental: {
     optimizePackageImports: [
       'clsx',
-      'tailwind-merge',
-      'react',
-      'react-dom'
+      'tailwind-merge'
     ],
-    optimizeCss: true,
-    scrollRestoration: true,
-    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
-    gzipSize: true,
   },
   
   // 画像最適化 - 極限設定
