@@ -22,9 +22,9 @@ const About = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: '40年の歴史と伝統',
-      description: '1984年の創業以来、職人の技術と伝統を大切に、最高品質のアイアン製品を提供し続けています。',
-      highlight: '40年の実績'
+      title: '確かな歴史と伝統',
+      description: '創業以来、職人の技術と伝統を大切に、最高品質のアイアン製品を提供し続けています。',
+      highlight: '豊富な実績'
     },
     {
       icon: (
@@ -52,9 +52,9 @@ const About = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
       ),
-      title: 'お客様満足度',
+      title: 'お客様との信頼関係',
       description: 'お客様一人一人のニーズに寄り添い、期待を超える製品とサービスを提供することを目指しています。',
-      highlight: '満足度100%'
+      highlight: '高い満足度'
     }
   ]
 
@@ -73,7 +73,7 @@ const About = () => {
             <div className="h-1 w-24 mx-auto bg-blue-600 rounded-full shadow-lg" />
           </div>
           <p className="text-xl text-slate-600 mt-8 max-w-3xl mx-auto leading-relaxed">
-            1984年創業以来、40年にわたりアイアン家具製作の最前線で
+            長年にわたりアイアン家具製作の最前線で
             <span className="text-blue-600 font-semibold">職人の技と革新</span>
             を追求し続けています
           </p>

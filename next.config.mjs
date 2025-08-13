@@ -1,50 +1,157 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // TypeScript and ESLint - Relaxed for Vercel deployment
+  // 本番環境最適化
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // 型チェックを有効化
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false, // ESLintチェックを有効化
   },
   
-  // Performance optimizations
+  // 極限パフォーマンス最適化
   poweredByHeader: false,
   trailingSlash: false,
   reactStrictMode: true,
   swcMinify: true,
   compress: true,
-  generateEtags: false,
+  generateEtags: true,
   
-  // Experimental features - Minimal for stability
+  // 実験的機能 - 最大最適化
   experimental: {
-    optimizePackageImports: ['clsx', 'tailwind-merge'],
+    optimizePackageImports: [
+      'clsx',
+      'tailwind-merge',
+      'react',
+      'react-dom'
+    ],
+    optimizeCss: true,
+    scrollRestoration: true,
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
+    gzipSize: true,
   },
   
-  // Image optimization
+  // 画像最適化 - 極限設定
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    deviceSizes: [320, 420, 640, 768, 1024, 1280, 1536, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 31536000, // 1年間
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentDispositionType: 'inline',
+    remotePatterns: [],
+    unoptimized: false,
   },
   
-  // Webpack configuration - Simplified for Vercel
-  webpack: (config, { dev, isServer }) => {
-    // Only essential optimizations
+  // Webpack最適化 - 極限設定
+  webpack: (config, { dev, isServer, webpack }) => {
+    // 本番環境の極限最適化
     if (!dev) {
-      config.optimization.usedExports = true;
-      config.optimization.sideEffects = false;
+      // Tree Shaking強化
+      config.optimization = {
+        ...config.optimization,
+        usedExports: true,
+        sideEffects: false,
+        minimize: true,
+        concatenateModules: true,
+        runtimeChunk: 'single',
+        splitChunks: {
+          chunks: 'all',
+          minSize: 20000,
+          minRemainingSize: 0,
+          minChunks: 1,
+          maxAsyncRequests: 30,
+          maxInitialRequests: 30,
+          enforceSizeThreshold: 50000,
+          cacheGroups: {
+            defaultVendors: {
+              test: /[\\/]node_modules[\\/]/,
+              priority: -10,
+              reuseExistingChunk: true,
+              name(module, chunks, cacheGroupKey) {
+                const packageName = module.context.match(
+                  /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                )?.[1];
+                return `vendor-${packageName?.replace('@', '')}`;
+              },
+            },
+            default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true,
+            },
+            react: {
+              test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+              name: 'react',
+              priority: 20,
+              chunks: 'all',
+            },
+            commons: {
+              name: 'commons',
+              minChunks: 2,
+              priority: 10,
+              reuseExistingChunk: true,
+            },
+          },
+        },
+      };
+
+      // プロダクションソースマップ無効化（サイズ削減）
+      config.devtool = false;
+
+      // TerserPlugin設定強化
+      config.optimization.minimizer = config.optimization.minimizer.map(plugin => {
+        if (plugin.constructor.name === 'TerserPlugin') {
+          plugin.options.terserOptions = {
+            ...plugin.options.terserOptions,
+            compress: {
+              drop_console: true,
+              drop_debugger: true,
+              pure_funcs: ['console.log', 'console.info', 'console.debug'],
+              passes: 2,
+            },
+            mangle: {
+              safari10: true,
+            },
+            format: {
+              comments: false,
+              ascii_only: true,
+            },
+          };
+        }
+        return plugin;
+      });
+
+      // 未使用コードの削除
+      config.plugins.push(
+        new webpack.IgnorePlugin({
+          resourceRegExp: /^\.\/locale$/,
+          contextRegExp: /moment$/,
+        })
+      );
     }
+
+    // サーバーサイドバンドルサイズ最適化
+    if (isServer) {
+      config.externals = [...(config.externals || []), 'canvas', 'jsdom'];
+    }
+
+    // Alias設定でインポート最適化
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': './src',
+    };
+
+    // モジュール解決の最適化
+    config.resolve.extensions = ['.ts', '.tsx', '.js', '.jsx', '.json'];
+
     return config;
   },
   
-  // Security headers
+  // セキュリティヘッダー強化
   headers: async () => [
     {
-      source: '/(.*)',
+      source: '/:path*',
       headers: [
         {
           key: 'X-DNS-Prefetch-Control',
@@ -63,17 +170,46 @@ const nextConfig = {
           value: 'nosniff'
         },
         {
+          key: 'X-XSS-Protection',
+          value: '1; mode=block'
+        },
+        {
           key: 'Referrer-Policy',
-          value: 'origin-when-cross-origin'
+          value: 'strict-origin-when-cross-origin'
         },
         {
           key: 'Permissions-Policy',
-          value: 'camera=(), microphone=(), geolocation=()'
+          value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+        },
+        {
+          key: 'Content-Security-Policy',
+          value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
         }
       ]
     },
+    // 静的アセットの長期キャッシュ
     {
-      source: '/static/:path*',
+      source: '/_next/static/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable'
+        }
+      ]
+    },
+    // 画像の長期キャッシュ
+    {
+      source: '/images/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable'
+        }
+      ]
+    },
+    // フォントの長期キャッシュ
+    {
+      source: '/fonts/:path*',
       headers: [
         {
           key: 'Cache-Control',
@@ -83,7 +219,7 @@ const nextConfig = {
     }
   ],
   
-  // Redirects
+  // リダイレクト最適化
   redirects: async () => [
     {
       source: '/home',
@@ -92,7 +228,7 @@ const nextConfig = {
     },
   ],
   
-  // Rewrites for API routes
+  // リライト設定
   rewrites: async () => [
     {
       source: '/api/sitemap',
@@ -100,12 +236,31 @@ const nextConfig = {
     },
   ],
   
-  // Output configuration (removed standalone for better compatibility)
+  // 出力設定
+  output: 'standalone',
+  distDir: '.next',
+  cleanDistDir: true,
   
-  // Environment variables
+  // 環境変数
   env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://vintage-iron-works.com',
   },
+
+  // モジュール連携
+  modularizeImports: {
+    '@heroicons/react': {
+      transform: '@heroicons/react/{{member}}',
+    },
+    'lodash': {
+      transform: 'lodash/{{member}}',
+    },
+  },
+
+  // 静的生成タイムアウト延長
+  staticPageGenerationTimeout: 120,
+
+  // ページ拡張子
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
 };
 
 export default nextConfig;

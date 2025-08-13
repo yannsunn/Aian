@@ -2,255 +2,175 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Critical CSS - Above the fold styles */
 @layer base {
   * {
     @apply box-border;
   }
   
-  /* モバイル最適化用スタイル */
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    font-display: swap;
   }
   
   body {
     @apply font-sans leading-relaxed text-gray-800 antialiased;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold;
+  /* Performance: コンテンツジャンプ防止 */
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
   
-  /* モバイルでのタッチターゲット最小サイズ確保 */
+  /* アクセシビリティ最適化 */
   button, a {
     @apply min-h-[44px] sm:min-h-0;
+    touch-action: manipulation;
+  }
+  
+  /* フォーカス管理 */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500;
   }
 }
 
 @layer components {
+  /* 最小限の再利用可能コンポーネント */
   .btn-primary {
-    @apply inline-block px-8 py-3 bg-iron-dark text-white font-semibold rounded-full transition-all duration-300 hover:bg-black hover:-translate-y-1 hover:shadow-lg;
-  }
-  
-  .btn-secondary {
-    @apply inline-block px-8 py-3 bg-white text-iron-dark font-semibold rounded-lg border border-gray-200 transition-all duration-300 hover:bg-gray-50 hover:-translate-y-1;
-  }
-  
-  .card {
-    @apply bg-white rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+    @apply inline-block px-8 py-3 bg-gray-900 text-white font-semibold rounded-full 
+           transition-all duration-300 hover:bg-black hover:scale-105 hover:shadow-lg
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
   
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+  
+  /* スケルトンローダー */
+  .skeleton {
+    @apply bg-gray-200 animate-pulse rounded;
+  }
 }
 
-/* Neuro-optimized CSS Effects */
+/* 高パフォーマンスアニメーション (GPU加速) */
+@keyframes fade-in {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to { 
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
 
-@keyframes neuro-pulse {
-  0%, 100% { 
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% { 
-    transform: scale(1.05);
-    opacity: 1;
-  }
+/* 使用されているユーティリティクラスのみ */
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
 }
 
-@keyframes neuro-attention-grab {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  25% { transform: scale(1.02) rotate(0.5deg); }
-  50% { transform: scale(1.04) rotate(0deg); }
-  75% { transform: scale(1.02) rotate(-0.5deg); }
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
 }
-
-@keyframes neuro-exit-pulse {
-  0%, 100% { 
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
-    transform: scale(1);
-  }
-  50% { 
-    box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
-    transform: scale(1.02);
-  }
-}
-
-/* ニューロ最適化クラス */
-.neuro-optimized-section {
-  transition: all 0.3s ease;
-}
-
-.neuro-simplified {
-  filter: brightness(1.1) contrast(0.9);
-}
-
-.neuro-enhanced {
-  transform: scale(1.01);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.neuro-exit-optimization {
-  animation: neuro-exit-pulse 2s infinite;
-  position: relative;
-}
-
-[data-neuro-attention] {
-  transition: all 0.3s ease;
-}
-
-[data-neuro-attention].animate-pulse {
-  animation: neuro-attention-grab 3s ease-in-out;
-}
-
-@keyframes attention-grab {
-  0%, 100% { transform: translateY(0) scale(1); }
-  25% { transform: translateY(-2px) scale(1.02); }
-  75% { transform: translateY(1px) scale(0.98); }
-}
-
-@keyframes trust-glow {
-  0%, 100% { 
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4),
-                0 0 40px rgba(251, 191, 36, 0.2);
-  }
-  50% { 
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6),
-                0 0 60px rgba(251, 191, 36, 0.4);
-  }
-}
-
-
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(139, 69, 19, 0.6); }
-}
-
-
 
 .animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   animation: shimmer 2s infinite;
 }
 
-.animate-glow {
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-.animate-neuro-pulse {
-  animation: neuro-pulse 2s ease-in-out infinite;
-}
-
-.animate-attention {
-  animation: attention-grab 3s ease-in-out infinite;
-}
-
-.animate-trust-glow {
-  animation: trust-glow 3s ease-in-out infinite;
-}
-
-
-
-/* Glass morphism utility */
+/* Glass morphism (実際に使用) */
 .glass {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.glass-dark {
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* パフォーマンス最適化: will-change */
+.will-change-transform {
+  will-change: transform;
 }
 
-/* Enhanced shadow utilities */
-.shadow-3xl {
-  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+.will-change-opacity {
+  will-change: opacity;
 }
 
-.shadow-4xl {
-  box-shadow: 0 45px 100px -12px rgba(0, 0, 0, 0.25);
-}
-
-.shadow-glow {
-  box-shadow: 
-    0 0 20px rgba(59, 130, 246, 0.3),
-    0 0 40px rgba(139, 69, 19, 0.2);
-}
-
-.shadow-glow-hover:hover {
-  box-shadow: 
-    0 0 30px rgba(59, 130, 246, 0.5),
-    0 0 60px rgba(139, 69, 19, 0.4);
-}
-
-/* Text effects */
-.text-shadow-lg {
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-.text-glow {
-  text-shadow: 
-    0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 20px rgba(59, 130, 246, 0.6),
-    0 0 30px rgba(139, 69, 19, 0.4);
-}
-
-/* Neuro-enhanced hover states */
-.hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hover-lift:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-/* Cognitive load reducers */
-.neuro-focus {
+/* レスポンシブ画像最適化 */
+.responsive-image {
   position: relative;
-  isolation: isolate;
+  overflow: hidden;
+  background-color: #f3f4f6;
 }
 
-.neuro-focus::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  background: linear-gradient(45deg, 
-    rgba(59, 130, 246, 0.1),
-    rgba(251, 191, 36, 0.1)
+.responsive-image img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Critical: Above-the-fold hero styles */
+.hero-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.6) 100%
   );
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
 }
 
-.neuro-focus:hover::before,
-.neuro-focus:focus-within::before {
-  opacity: 1;
+/* Lazy-load対応 */
+.lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
 }
 
-/* Trust indicators */
-.trust-badge {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  color: white;
-  font-weight: 600;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  box-shadow: 0 2px 10px rgba(251, 191, 36, 0.3);
-}
-
-/* Urgency triggers */
-.urgency-pulse {
-  animation: neuro-pulse 1s ease-in-out infinite;
-  color: #dc2626;
-  font-weight: 700;
+/* Print最適化 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    color: black;
+    background: white;
+  }
 }
