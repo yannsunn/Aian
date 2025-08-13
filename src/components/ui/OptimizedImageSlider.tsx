@@ -43,7 +43,7 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
   useEffect(() => {
     setCurrentIndex(0)
     setLoadedImages(new Set([0]))
-  }, [images]) // 画像配列全体が変わった時にリセット
+  }, [images.length]) // 画像の数が変わった時にリセット
   
   // プリロード戦略
   useEffect(() => {
