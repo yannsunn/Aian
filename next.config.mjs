@@ -127,7 +127,7 @@ const nextConfig = {
   ],
   
   // 出力設定
-  output: 'standalone',
+  // output: 'standalone', // Vercelでは不要
   distDir: '.next',
   cleanDistDir: true,
   
