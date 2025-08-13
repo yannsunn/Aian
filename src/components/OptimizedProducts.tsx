@@ -63,7 +63,7 @@ const categories: Category[] = [
     name: '受注生産',
     description: 'お客様のご要望に合わせた完全オーダーメイド製品',
     images: [
-      '/images/products/custom-order/S__83738760_new.jpg',
+      '/images/products/custom-order/S__83738745_0.jpg',  // テスト用の動作確認済み画像
       '/images/products/custom-order/S__83738761.jpg'
     ]
   }
