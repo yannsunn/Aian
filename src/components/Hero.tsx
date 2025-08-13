@@ -25,6 +25,7 @@ const Hero = () => {
   
   // ヒーロー画像のリスト
   const heroImages = [
+    '/images/products/home/S__83738760.jpg',  // 1枚目（新しい画像）
     '/images/products/home/S__83738739.jpg',
     '/images/products/home/S__83738740_0.jpg',
     '/images/products/home/S__83738742_0.jpg',
