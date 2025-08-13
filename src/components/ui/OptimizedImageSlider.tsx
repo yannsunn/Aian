@@ -29,8 +29,8 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
   showIndicators = true,
   showControls = true
 }) => {
-  // 初期表示は必ず0番目（1枚目）から始める
-  const [currentIndex, setCurrentIndex] = useState(0)
+  // 初期表示は必ず0番目（1枚目）から始める - 強制的に0を設定
+  const [currentIndex, setCurrentIndex] = useState(() => 0)
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]))
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
