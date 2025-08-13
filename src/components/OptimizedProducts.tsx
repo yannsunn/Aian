@@ -12,6 +12,12 @@ const OptimizedImageSlider = dynamic(() => import('./ui/OptimizedImageSlider'), 
   ssr: false
 })
 
+// シンプルなImageSlider（受注生産用）
+const SimpleImageSlider = dynamic(() => import('./ui/SimpleImageSlider'), {
+  loading: () => <div className="aspect-video bg-gray-200 animate-pulse rounded-lg" />,
+  ssr: false
+})
+
 interface Category {
   id: string
   name: string
@@ -63,8 +69,8 @@ const categories: Category[] = [
     name: '受注生産',
     description: 'お客様のご要望に合わせた完全オーダーメイド製品',
     images: [
-      '/images/products/custom-order/S__83738761.jpg',
-      '/images/products/custom-order/S__83738760.jpg'
+      '/images/products/custom-order/S__83738760.jpg',  // 1枚目
+      '/images/products/custom-order/S__83738761.jpg'   // 2枚目
     ]
   }
 ]
@@ -254,16 +260,24 @@ const OptimizedProducts = memo(() => {
           {/* メイン画像スライダー */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
             <div className="relative aspect-[16/10] md:aspect-[16/9]">
-              <OptimizedImageSlider
-                images={currentCategory.images}
-                alt={currentCategory.name}
-                className="w-full h-full"
-                autoPlay={isAutoPlay && selectedCategory !== 'custom'}
-                interval={2000}
-                priority={selectedCategory === 'home'}
-                preloadCount={2}
-                objectFit="contain"
-              />
+              {selectedCategory === 'custom' ? (
+                <SimpleImageSlider
+                  images={currentCategory.images}
+                  alt={currentCategory.name}
+                  className="w-full h-full"
+                />
+              ) : (
+                <OptimizedImageSlider
+                  images={currentCategory.images}
+                  alt={currentCategory.name}
+                  className="w-full h-full"
+                  autoPlay={isAutoPlay}
+                  interval={2000}
+                  priority={selectedCategory === 'home'}
+                  preloadCount={2}
+                  objectFit="contain"
+                />
+              )}
             </div>
           </div>
 
