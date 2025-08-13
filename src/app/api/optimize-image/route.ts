@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import sharp from 'sharp'
 
-export const runtime = 'nodejs'
+export const runtime = 'edge'
 
 interface OptimizeOptions {
   width?: number
@@ -14,60 +13,30 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const imageUrl = searchParams.get('url')
-    const width = parseInt(searchParams.get('w') || '0')
-    const height = parseInt(searchParams.get('h') || '0')
-    const quality = parseInt(searchParams.get('q') || '85')
-    const format = (searchParams.get('f') as OptimizeOptions['format']) || 'webp'
+    const width = searchParams.get('w') || ''
+    const height = searchParams.get('h') || ''
+    const quality = searchParams.get('q') || '85'
 
     if (!imageUrl) {
       return NextResponse.json({ error: 'Image URL is required' }, { status: 400 })
     }
 
-    // Fetch the original image
+    // For Vercel deployment, we'll use Next.js Image Optimization API
+    // or simply pass through the original image with caching headers
     const response = await fetch(imageUrl)
     if (!response.ok) {
       throw new Error(`Failed to fetch image: ${response.statusText}`)
     }
 
     const buffer = await response.arrayBuffer()
-    const imageBuffer = Buffer.from(buffer)
-
-    // Process image with sharp
-    let processedImage = sharp(imageBuffer)
-
-    // Resize if dimensions provided
-    if (width || height) {
-      processedImage = processedImage.resize(width || undefined, height || undefined, {
-        fit: 'inside',
-        withoutEnlargement: true,
-      })
-    }
-
-    // Apply format and quality
-    switch (format) {
-      case 'avif':
-        processedImage = processedImage.avif({ quality, effort: 4 })
-        break
-      case 'webp':
-        processedImage = processedImage.webp({ quality, effort: 4 })
-        break
-      case 'jpeg':
-        processedImage = processedImage.jpeg({ quality, progressive: true, mozjpeg: true })
-        break
-      case 'png':
-        processedImage = processedImage.png({ quality, compressionLevel: 9, progressive: true })
-        break
-    }
-
-    const optimizedBuffer = await processedImage.toBuffer()
-
-    // Return optimized image with appropriate headers
-    return new NextResponse(optimizedBuffer, {
+    
+    // Return image with caching headers
+    return new NextResponse(buffer, {
       status: 200,
       headers: {
-        'Content-Type': `image/${format}`,
+        'Content-Type': response.headers.get('content-type') || 'image/jpeg',
         'Cache-Control': 'public, max-age=31536000, immutable',
-        'Content-Length': optimizedBuffer.length.toString(),
+        'Content-Length': buffer.byteLength.toString(),
       },
     })
   } catch (error) {
