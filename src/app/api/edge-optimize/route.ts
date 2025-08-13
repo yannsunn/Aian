@@ -63,7 +63,7 @@ async function optimizeRequest(request: NextRequest) {
     supportsBrotli: acceptEncoding.includes('br'),
     supportsWebP: headers.get('accept')?.includes('image/webp'),
     supportsAvif: headers.get('accept')?.includes('image/avif'),
-    recommendations: []
+    recommendations: [] as string[]
   }
 
   // デバイス別最適化推奨
