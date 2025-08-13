@@ -227,15 +227,15 @@ const Contact = () => {
                 <div className="space-y-3 text-slate-700">
                   <div className="flex justify-between">
                     <span className="font-medium">平日</span>
-                    <span>9:00 - 18:00</span>
+                    <span>営業中</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="font-medium">土曜日</span>
-                    <span>9:00 - 16:00</span>
+                    <span>営業中（短縮）</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="font-medium">日曜・祝日</span>
-                    <span className="text-red-600">定休日</span>
+                    <span className="text-red-600">お休み</span>
                   </div>
                 </div>
               </div>
@@ -255,8 +255,8 @@ const Contact = () => {
                 </div>
                 <p className="text-slate-700 leading-relaxed">
                   お問い合わせいただいた内容については、
-                  <span className="text-emerald-600 font-semibold">営業日48時間以内</span>
-                  にご返答させていただきます。お急ぎの場合はお電話でのお問い合わせもお受けしております。
+                  <span className="text-emerald-600 font-semibold">可能な限り迅速に</span>
+                  ご返答させていただきます。お急ぎの場合はお電話でのお問い合わせもお受けしております。
                 </p>
               </div>
             </Card>
@@ -275,8 +275,8 @@ const Contact = () => {
                 </div>
                 <p className="text-slate-700 leading-relaxed mb-4">
                   LINEでもお気軽にお問い合わせいただけます。
-                  <span className="text-green-600 font-semibold">24時間受付中</span>
-                  ですので、いつでもご連絡ください。
+                  <span className="text-green-600 font-semibold">いつでもメッセージ可能</span>
+                  ですので、お気軽にご連絡ください。
                 </p>
                 <a 
                   href="https://line.me/R/ti/p/@919vshsk"

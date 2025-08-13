@@ -92,7 +92,7 @@ const Hero = () => {
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
-              <span className="text-white font-medium text-sm tracking-wide">創業40年 - 職人の技術</span>
+              <span className="text-white font-medium text-sm tracking-wide">職人の技術と伝統</span>
             </div>
           </div>
           
@@ -110,25 +110,25 @@ const Hero = () => {
                 <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 border-2 border-white/50" />
               ))}
             </div>
-            <span className="text-sm text-white/90 font-medium">1,200+ 満足のお客様</span>
+            <span className="text-sm text-white/90 font-medium">多数のお客様にご愛顧いただいています</span>
             <span className="text-amber-400">★★★★★</span>
           </div>
 
           {/* シンプルで洗練された価値提案 */}
           <div className="mb-8 sm:mb-12">
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed max-w-3xl mx-auto text-gray-200 mb-4 sm:mb-8 px-4">
-              40年の職人技が生み出す、一生モノの品質と美しさ
+              熟練の職人技が生み出す、長く愛される品質と美しさ
             </p>
             
             {/* 控えめな社会的証明 */}
             <div className="flex justify-center gap-8 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-white rounded-full opacity-60" />
-                <span>1,200+ のお客様</span>
+                <span>多数の実績</span>
               </div>
               <div className="flex items-center gap-2">
                 <span>★★★★★</span>
-                <span>4.9/5.0</span>
+                <span>高評価</span>
               </div>
             </div>
           </div>
@@ -158,7 +158,7 @@ const Hero = () => {
             
             {/* 控えめな信頼性指標 */}
             <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-400 px-4">
-              <span>品質保証10年</span>
+              <span>長期品質保証</span>
               <span className="hidden sm:inline">•</span>
               <span>全国配送対応</span>
               <span className="hidden sm:inline">•</span>

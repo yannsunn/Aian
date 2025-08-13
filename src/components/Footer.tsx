@@ -24,7 +24,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-slate-300 leading-relaxed">
-              アイアン製品の企画・販売・品質管理を手掛ける、溶接歴40年のパートナーとの信頼ある協業体制です。
+              アイアン製品の企画・販売・品質管理を手掛ける、熟練の職人との信頼ある協業体制です。
             </p>
             <div className="flex items-center space-x-1">
               <span className="text-amber-400 text-sm font-medium">★★★★★</span>
@@ -89,15 +89,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex justify-between items-center py-2 border-b border-slate-700">
                 <span className="text-slate-300">平日</span>
-                <span className="text-white font-medium">9:00 - 18:00</span>
+                <span className="text-white font-medium">営業中</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-slate-700">
                 <span className="text-slate-300">土曜日</span>
-                <span className="text-white font-medium">9:00 - 16:00</span>
+                <span className="text-white font-medium">営業中（短縮）</span>
               </div>
               <div className="flex justify-between items-center py-2">
                 <span className="text-slate-300">日曜・祝日</span>
-                <span className="text-red-400 font-medium">定休日</span>
+                <span className="text-red-400 font-medium">お休み</span>
               </div>
             </div>
             <div className="bg-slate-800 p-4 rounded-xl">
