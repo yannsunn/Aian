@@ -140,73 +140,8 @@ export default function RootLayout({
           }}
         />
         
-        {/* パフォーマンス監視初期化 */}
-        <Script
-          id="performance-monitor"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              import('/lib/performance-monitor.js').then(module => {
-                window.__performanceMonitor = module.default;
-              });
-            `
-          }}
-        />
         
-        {/* Speculation Rules API - プリフェッチの高度な制御 */}
-        <Script
-          id="speculation-rules"
-          type="speculationrules"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              prerender: [
-                {
-                  source: "list",
-                  urls: ["/products", "/company"]
-                }
-              ],
-              prefetch: [
-                {
-                  source: "list",
-                  urls: ["/contact", "/privacy", "/terms"],
-                  requires: ["anonymous-client-ip-when-cross-origin"],
-                  referrer_policy: "no-referrer"
-                }
-              ]
-            })
-          }}
-        />
         
-        {/* Adaptive Loading - ネットワーク状況に応じた最適化 */}
-        <Script
-          id="adaptive-loading"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('connection' in navigator) {
-                const connection = navigator.connection;
-                const slowConnection = connection.effectiveType === '2g' || 
-                                       connection.effectiveType === 'slow-2g' ||
-                                       connection.saveData === true;
-                
-                if (slowConnection) {
-                  document.documentElement.classList.add('slow-connection');
-                  // 低速接続用の最適化を適用
-                  document.querySelectorAll('[data-lazy]').forEach(el => {
-                    el.loading = 'lazy';
-                  });
-                }
-                
-                // ネットワーク変更を監視
-                connection.addEventListener('change', () => {
-                  const isSlowNow = connection.effectiveType === '2g' || 
-                                    connection.effectiveType === 'slow-2g';
-                  document.documentElement.classList.toggle('slow-connection', isSlowNow);
-                });
-              }
-            `
-          }}
-        />
         
         
         <main className="min-h-screen">
