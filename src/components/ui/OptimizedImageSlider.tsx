@@ -41,8 +41,6 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
   
   // 画像配列が変更された時に確実に0番目を表示
   useEffect(() => {
-    console.log('OptimizedImageSlider - images received:', images)
-    console.log('OptimizedImageSlider - images length:', images.length)
     setCurrentIndex(0)
     setLoadedImages(new Set([0]))
   }, [images.length]) // 画像の数が変わった時にリセット

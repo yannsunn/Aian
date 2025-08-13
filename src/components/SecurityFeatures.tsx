@@ -10,11 +10,7 @@ const SecurityFeatures = () => {
     meta.content = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
     document.head.appendChild(meta)
 
-    // X-Frame-Options
-    const frameOptions = document.createElement('meta')
-    frameOptions.httpEquiv = 'X-Frame-Options'
-    frameOptions.content = 'DENY'
-    document.head.appendChild(frameOptions)
+    // X-Frame-Optionsはヘッダーで設定すべきなので削除
 
     // X-Content-Type-Options
     const contentType = document.createElement('meta')
@@ -31,7 +27,6 @@ const SecurityFeatures = () => {
     // Cleanup
     return () => {
       document.head.removeChild(meta)
-      document.head.removeChild(frameOptions)
       document.head.removeChild(contentType)
       document.head.removeChild(referrer)
     }
