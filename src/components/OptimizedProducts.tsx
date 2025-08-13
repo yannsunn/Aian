@@ -63,8 +63,8 @@ const categories: Category[] = [
     name: '受注生産',
     description: 'お客様のご要望に合わせた完全オーダーメイド製品',
     images: [
-      '/images/products/home/S__83738739.jpg',  // テスト：動作確認済みの画像を使用
-      '/images/products/custom-order/S__83738761.jpg'       // 2枚目
+      '/images/products/custom-order/S__83738760_new.jpg',
+      '/images/products/custom-order/S__83738761.jpg'
     ]
   }
 ]
@@ -260,7 +260,7 @@ const OptimizedProducts = memo(() => {
                 className="w-full h-full"
                 autoPlay={isAutoPlay}
                 interval={2000}
-                priority={selectedCategory === 'home'}
+                priority={true}
                 preloadCount={2}
                 objectFit="contain"
               />
