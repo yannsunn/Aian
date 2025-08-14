@@ -66,7 +66,6 @@ const categories: Category[] = [
 const Products = () => {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 })
   const [selectedCategory, setSelectedCategory] = useState<string>('home')
-  const [isAutoPlay, setIsAutoPlay] = useState(true)
 
   const currentCategory = categories.find(cat => cat.id === selectedCategory) || categories[0]
 
@@ -125,29 +124,14 @@ const Products = () => {
           "max-w-6xl mx-auto transition-all duration-700",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
-          {/* スライダーコントロール */}
-          <div className="flex justify-center gap-4 mb-6">
-            <button
-              onClick={() => setIsAutoPlay(!isAutoPlay)}
-              className={cn(
-                "px-4 py-2 rounded-lg font-medium transition-all",
-                isAutoPlay
-                  ? "bg-green-100 text-green-700 border border-green-300"
-                  : "bg-gray-100 text-gray-700 border border-gray-300"
-              )}
-            >
-              {isAutoPlay ? '自動再生 ON' : '自動再生 OFF'}
-            </button>
-          </div>
-
           {/* メイン画像スライダー */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
-            <div className="relative aspect-[16/10] md:aspect-[16/9]">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full" style={{ aspectRatio: '4/3' }}>
               <ImageSlider
                 images={currentCategory.images}
                 alt={currentCategory.name}
-                className="w-full h-full object-contain"
-                autoPlay={isAutoPlay}
+                className="w-full h-full object-cover"
+                autoPlay={true}
                 interval={3000}
               />
             </div>

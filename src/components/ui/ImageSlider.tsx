@@ -38,6 +38,12 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, alt, className, autoP
     setCurrentIndex(newIndex)
   }
   
+  // Reset to first image when images array changes
+  useEffect(() => {
+    setCurrentIndex(0)
+    setIsImageLoaded(false)
+  }, [images])
+
   // Auto-play functionality
   useEffect(() => {
     if (autoPlay && images.length > 1) {
