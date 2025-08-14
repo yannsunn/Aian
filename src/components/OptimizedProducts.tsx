@@ -159,9 +159,11 @@ const OptimizedProducts = memo(() => {
 
   // メモ化されたカテゴリー選択ハンドラー
   const handleCategorySelect = useCallback((categoryId: string) => {
+    console.log('Category selected:', categoryId)
     setSelectedCategory(categoryId)
     // カテゴリー変更時にプリロード
     const category = categories.find(cat => cat.id === categoryId)
+    console.log('Found category:', category)
     if (category && category.images.length > 0) {
       const img = new window.Image()
       img.src = category.images[0]
@@ -254,6 +256,7 @@ const OptimizedProducts = memo(() => {
           {/* メイン画像スライダー */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
             <div className="relative aspect-[16/10] md:aspect-[16/9]">
+              {console.log('Rendering slider for category:', currentCategory.name, 'with images:', currentCategory.images)}
               <OptimizedImageSlider
                 images={currentCategory.images}
                 alt={currentCategory.name}
