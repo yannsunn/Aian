@@ -152,10 +152,11 @@ const OptimizedProducts = memo(() => {
   const [isAutoPlay, setIsAutoPlay] = useState(true)
 
   // メモ化された現在のカテゴリー
-  const currentCategory = useMemo(
-    () => categories.find(cat => cat.id === selectedCategory) || categories[0],
-    [selectedCategory]
-  )
+  const currentCategory = useMemo(() => {
+    const category = categories.find(cat => cat.id === selectedCategory) || categories[0]
+    console.log('Current category:', category.name, 'with images:', category.images)
+    return category
+  }, [selectedCategory])
 
   // メモ化されたカテゴリー選択ハンドラー
   const handleCategorySelect = useCallback((categoryId: string) => {
@@ -256,7 +257,6 @@ const OptimizedProducts = memo(() => {
           {/* メイン画像スライダー */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
             <div className="relative aspect-[16/10] md:aspect-[16/9]">
-              {console.log('Rendering slider for category:', currentCategory.name, 'with images:', currentCategory.images)}
               <OptimizedImageSlider
                 images={currentCategory.images}
                 alt={currentCategory.name}
