@@ -29,10 +29,6 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
   showIndicators = true,
   showControls = true
 }) => {
-  // デバッグログ
-  console.log('OptimizedImageSlider - images:', images)
-  console.log('OptimizedImageSlider - alt:', alt)
-  
   // 初期表示は必ず0番目（1枚目）から始める - 強制的に0を設定
   const [currentIndex, setCurrentIndex] = useState(() => 0)
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]))
@@ -200,13 +196,7 @@ const OptimizedImageSlider: React.FC<OptimizedImageSliderProps> = React.memo(({
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
             onClick={() => setIsZoomed(true)}
-            onLoad={() => {
-              console.log(`Image loaded: ${images[currentIndex]}`)
-              setLoadedImages(prev => new Set([...prev, currentIndex]))
-            }}
-            onError={(e) => {
-              console.error(`Image load error: ${images[currentIndex]}`, e)
-            }}
+            onLoad={() => setLoadedImages(prev => new Set([...prev, currentIndex]))}
           />
         </div>
 
