@@ -105,7 +105,8 @@ const Contact = () => {
             <div className="h-1 w-20 sm:w-24 mx-auto bg-amber-600 rounded-full shadow-lg" />
           </div>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 mt-4 sm:mt-6 md:mt-8 max-w-3xl mx-auto leading-relaxed px-4">
-            オーダーメイドアイアン製品に関するご相談、お見積もりなど
+            オーダーメイドアイアン製品に関するご相談、<br />
+            お見積もりなど<br />
             <span className="text-amber-600 font-semibold">お気軽にお問い合わせ</span>
             ください
           </p>
@@ -119,7 +120,7 @@ const Contact = () => {
           )}>
             <div className="absolute inset-0 bg-white rounded-3xl" />
             <div className="relative z-10">
-              <h3 className="text-3xl font-bold text-slate-900 mb-6">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
                 メールでのお問い合わせ
               </h3>
               
@@ -137,7 +138,7 @@ const Contact = () => {
           
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-3">
+                  <label htmlFor="name" className="block text-base sm:text-lg md:text-xl font-semibold text-slate-700 mb-3">
                     お名前 <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -147,13 +148,13 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-white"
+                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-white text-base sm:text-lg md:text-xl"
                     placeholder="お名前を入力してください"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-3">
+                  <label htmlFor="email" className="block text-base sm:text-lg md:text-xl font-semibold text-slate-700 mb-3">
                     メールアドレス <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -163,13 +164,13 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-white"
+                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-white text-base sm:text-lg md:text-xl"
                     placeholder="メールアドレスを入力してください"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-3">
+                  <label htmlFor="message" className="block text-base sm:text-lg md:text-xl font-semibold text-slate-700 mb-3">
                     お問い合わせ内容 <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -179,7 +180,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 resize-vertical bg-white"
+                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 resize-vertical bg-white text-base sm:text-lg md:text-xl"
                     placeholder="お問い合わせ内容を詳しく入力してください"
                   />
                 </div>
@@ -222,9 +223,9 @@ const Contact = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">営業時間</h3>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">営業時間</h3>
                 </div>
-                <div className="space-y-3 text-slate-700">
+                <div className="space-y-3 text-base sm:text-lg md:text-xl text-slate-700">
                   <div className="flex justify-between">
                     <span className="font-medium">平日</span>
                     <span>営業中</span>
@@ -251,12 +252,13 @@ const Contact = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">お返事について</h3>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">お返事について</h3>
                 </div>
-                <p className="text-slate-700 leading-relaxed">
-                  お問い合わせいただいた内容については、
+                <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed">
+                  お問い合わせいただいた内容については、<br />
                   <span className="text-amber-600 font-semibold">可能な限り迅速に</span>
-                  ご返答させていただきます。お急ぎの場合はお電話でのお問い合わせもお受けしております。
+                  ご返答させていただきます。<br />
+                  お急ぎの場合はお電話でのお問い合わせもお受けしております。
                 </p>
               </div>
             </Card>
@@ -271,10 +273,10 @@ const Contact = () => {
                       <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">LINE公式アカウント</h3>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">LINE公式アカウント</h3>
                 </div>
-                <p className="text-slate-700 leading-relaxed mb-4">
-                  LINEでもお気軽にお問い合わせいただけます。
+                <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed mb-4">
+                  LINEでもお気軽にお問い合わせいただけます。<br />
                   <span className="text-green-600 font-semibold">いつでもメッセージ可能</span>
                   ですので、お気軽にご連絡ください。
                 </p>
@@ -282,7 +284,7 @@ const Contact = () => {
                   href="https://line.me/R/ti/p/@919vshsk"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full py-3 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg"
+                  className="inline-flex items-center justify-center w-full py-3 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg text-base sm:text-lg md:text-xl"
                 >
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
@@ -302,12 +304,13 @@ const Contact = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">無料相談</h3>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">無料相談</h3>
                 </div>
-                <p className="text-slate-700 leading-relaxed">
-                  デザインのご相談から製作まで、
+                <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed">
+                  デザインのご相談から製作まで、<br />
                   <span className="text-amber-700 font-semibold">経験を積んだ職人</span>
-                  がサポートいたします。どんな小さなご質問でもお気軽にお問い合わせください。
+                  がサポートいたします。<br />
+                  どんな小さなご質問でもお気軽にお問い合わせください。
                 </p>
               </div>
             </Card>

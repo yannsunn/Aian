@@ -81,18 +81,19 @@ const Products = () => {
             <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
             </svg>
-            <span className="text-gray-700 font-medium text-sm">コレクション</span>
+            <span className="text-gray-700 font-medium text-base sm:text-lg md:text-xl">コレクション</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-light mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6">
             <span className="font-thin text-gray-800">製品</span>
             <span className="block mt-2 font-bold text-gray-900">
               ギャラリー
             </span>
           </h2>
           
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            長年の経験と精密な技術が生み出す、唯一無二のアイアン作品
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            長年の経験と精密な技術が生み出す、<br />
+            唯一無二のアイアン作品
           </p>
         </div>
 
@@ -103,7 +104,7 @@ const Products = () => {
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
               className={cn(
-                "px-6 py-3 rounded-full font-medium transition-all duration-300",
+                "px-6 py-3 rounded-full font-medium transition-all duration-300 text-base sm:text-lg md:text-xl",
                 selectedCategory === category.id
                   ? "bg-amber-700 text-white shadow-lg scale-105"
                   : "bg-white text-amber-800 border border-amber-300 hover:bg-amber-50"
@@ -116,7 +117,7 @@ const Products = () => {
 
         {/* カテゴリー説明 */}
         <div className="text-center mb-8">
-          <p className="text-gray-600">{currentCategory.description}</p>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600">{currentCategory.description}</p>
         </div>
 
         {/* 画像ギャラリー */}
@@ -166,17 +167,17 @@ const Products = () => {
         style={{ transitionDelay: "400ms" }}
         >
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-3xl font-bold mb-4">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               ご興味のある製品はございましたか？
             </h3>
-            <p className="text-xl mb-8 text-gray-300">
+            <p className="text-base sm:text-lg md:text-xl mb-8 text-gray-300">
               すべての製品はオーダーメイドでの製作も承っております。<br />
               お気軽にお問い合わせください。
             </p>
             
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-amber-900 rounded-lg font-bold hover:bg-amber-50 transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-amber-900 rounded-lg font-bold hover:bg-amber-50 transition-all duration-300 hover:scale-105 text-base sm:text-lg md:text-xl"
             >
               <span>お問い合わせ・ご相談</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
