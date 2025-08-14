@@ -23,8 +23,8 @@ const About = () => {
         </svg>
       ),
       title: '確かな歴史と伝統',
-      description: '創業以来、職人の技術と伝統を大切に、最高品質のアイアン製品を提供し続けています。',
-      highlight: '豊富な実績'
+      description: '職人の技術と伝統を大切に、一つ一つ心を込めてアイアン製品を作り続けています。',
+      highlight: '伝統技術'
     },
     {
       icon: (
@@ -53,13 +53,13 @@ const About = () => {
         </svg>
       ),
       title: 'お客様との信頼関係',
-      description: 'お客様一人一人のニーズに寄り添い、期待を超える製品とサービスを提供することを目指しています。',
-      highlight: '高い満足度'
+      description: 'お客様一人一人のニーズに寄り添い、真心を込めた製品とサービスを提供することを目指しています。',
+      highlight: '真心対応'
     }
   ]
 
   return (
-    <section ref={sectionRef} id="about" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-slate-50">
+    <section ref={sectionRef} id="about" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-amber-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className={cn(
@@ -70,12 +70,12 @@ const About = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 md:mb-6 tracking-tight">
               会社概要
             </h2>
-            <div className="h-1 w-20 sm:w-24 mx-auto bg-blue-600 rounded-full shadow-lg" />
+            <div className="h-1 w-20 sm:w-24 mx-auto bg-amber-600 rounded-full shadow-lg" />
           </div>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 mt-4 sm:mt-6 md:mt-8 max-w-3xl mx-auto leading-relaxed px-4">
-            長年にわたりアイアン家具製作の最前線で
-            <span className="text-blue-600 font-semibold">職人の技と革新</span>
-            を追求し続けています
+            長年にわたりアイアン家具製作の世界で
+            <span className="text-amber-600 font-semibold">職人の技と伝統</span>
+            を大切にしています
           </p>
         </div>
 
@@ -85,7 +85,7 @@ const About = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         )}>
           <Card variant="premium" className="p-6 sm:p-8 md:p-10 lg:p-12 text-center">
-            <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
+            <div className="absolute inset-0 bg-amber-50 rounded-3xl" />
             <div className="relative z-10">
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">
                 企業理念
@@ -94,10 +94,10 @@ const About = () => {
                 「鉄に魂を込めて、お客様の想いを形にする」
                 <br />
                 <span className="text-sm sm:text-base md:text-lg text-slate-600 not-italic mt-2 sm:mt-4 block">
-                  私たちは単なるアイアン製品メーカーではありません。
-                  お客様の夢と想いを、職人の技術で形にする
-                  <span className="text-blue-600 font-semibold">クリエイティブパートナー</span>
-                  です。
+                  私たちは一つ一つの作品に心を込め、
+                  お客様の夢と想いを職人の技術で
+                  <span className="text-amber-600 font-semibold">丁寧に形にしていく</span>
+                  ことを大切にしています。
                 </span>
               </blockquote>
             </div>
@@ -120,18 +120,18 @@ const About = () => {
                 }}
               >
                 <div className="mb-6 flex justify-center">
-                  <div className="p-4 bg-slate-100 rounded-2xl group-hover:bg-blue-50 transition-colors duration-300">
+                  <div className="p-4 bg-slate-100 rounded-2xl group-hover:bg-amber-50 transition-colors duration-300">
                     {item.icon}
                   </div>
                 </div>
                 
                 {item.highlight && (
-                  <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full mb-4">
+                  <div className="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-sm font-medium rounded-full mb-4">
                     {item.highlight}
                   </div>
                 )}
                 
-                <h3 className="text-xl font-bold mb-4 text-slate-800 group-hover:text-blue-900 transition-colors duration-300">
+                <h3 className="text-xl font-bold mb-4 text-slate-800 group-hover:text-amber-900 transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
@@ -139,7 +139,7 @@ const About = () => {
                 </p>
                 
                 {/* Animated bottom accent */}
-                <div className="mt-6 h-0.5 w-0 bg-blue-600 group-hover:w-full transition-all duration-500 rounded-full mx-auto" />
+                <div className="mt-6 h-0.5 w-0 bg-amber-600 group-hover:w-full transition-all duration-500 rounded-full mx-auto" />
               </Card>
             ))}
           </div>
@@ -163,9 +163,9 @@ const About = () => {
                 ミッション
               </h3>
               <p className="text-lg text-slate-700 leading-relaxed">
-                最高品質のアイアン製品を通じて、お客様の生活空間に
+                丁寧なモノづくりを通じて、お客様の生活空間に
                 <span className="text-emerald-600 font-semibold">美しさと機能性</span>
-                をもたらし、永く愛される製品を創造し続けます。
+                をもたらし、長く愛用いただける製品作りに取り組んでいます。
               </p>
             </div>
           </Card>
@@ -184,9 +184,9 @@ const About = () => {
                 ビジョン
               </h3>
               <p className="text-lg text-slate-700 leading-relaxed">
-                日本最高峰のオーダーメイドアイアン工房として、
-                <span className="text-amber-600 font-semibold">伝統技術と革新</span>
-                を融合し、世界に誇れるものづくりを追求します。
+                伝統的なアイアン工房として、
+                <span className="text-amber-600 font-semibold">伝統技術と新しい発想</span>
+                を大切にしながら、品質の高いものづくりを続けています。
               </p>
             </div>
           </Card>

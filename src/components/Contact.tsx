@@ -91,7 +91,7 @@ const Contact = () => {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 })
 
   return (
-    <section ref={sectionRef} id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-slate-100">
+    <section ref={sectionRef} id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-amber-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className={cn(
@@ -102,11 +102,11 @@ const Contact = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 md:mb-6 tracking-tight">
               お問い合わせ
             </h2>
-            <div className="h-1 w-20 sm:w-24 mx-auto bg-blue-600 rounded-full shadow-lg" />
+            <div className="h-1 w-20 sm:w-24 mx-auto bg-amber-600 rounded-full shadow-lg" />
           </div>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 mt-4 sm:mt-6 md:mt-8 max-w-3xl mx-auto leading-relaxed px-4">
             オーダーメイドアイアン製品に関するご相談、お見積もりなど
-            <span className="text-blue-600 font-semibold">お気軽にお問い合わせ</span>
+            <span className="text-amber-600 font-semibold">お気軽にお問い合わせ</span>
             ください
           </p>
         </div>
@@ -147,7 +147,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-white"
                     placeholder="お名前を入力してください"
                   />
                 </div>
@@ -163,7 +163,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-white"
                     placeholder="メールアドレスを入力してください"
                   />
                 </div>
@@ -179,7 +179,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical bg-white"
+                    className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 resize-vertical bg-white"
                     placeholder="お問い合わせ内容を詳しく入力してください"
                   />
                 </div>
@@ -214,11 +214,11 @@ const Contact = () => {
           )}>
             {/* Business Hours */}
             <Card variant="premium" className="p-8">
-              <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
+              <div className="absolute inset-0 bg-amber-50 rounded-3xl" />
               <div className="relative z-10">
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
@@ -255,7 +255,7 @@ const Contact = () => {
                 </div>
                 <p className="text-slate-700 leading-relaxed">
                   お問い合わせいただいた内容については、
-                  <span className="text-emerald-600 font-semibold">可能な限り迅速に</span>
+                  <span className="text-amber-600 font-semibold">可能な限り迅速に</span>
                   ご返答させていただきます。お急ぎの場合はお電話でのお問い合わせもお受けしております。
                 </p>
               </div>
@@ -306,7 +306,7 @@ const Contact = () => {
                 </div>
                 <p className="text-slate-700 leading-relaxed">
                   デザインのご相談から製作まで、
-                  <span className="text-amber-600 font-semibold">経験豊富な職人</span>
+                  <span className="text-amber-700 font-semibold">経験を積んだ職人</span>
                   がサポートいたします。どんな小さなご質問でもお気軽にお問い合わせください。
                 </p>
               </div>

@@ -70,7 +70,7 @@ const Products = () => {
   const currentCategory = categories.find(cat => cat.id === selectedCategory) || categories[0]
 
   return (
-    <section id="products" ref={sectionRef} className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="products" ref={sectionRef} className="py-20 bg-gradient-to-b from-amber-25 to-white">
       <div className="container mx-auto px-6">
         {/* セクションヘッダー */}
         <div className={cn(
@@ -105,8 +105,8 @@ const Products = () => {
               className={cn(
                 "px-6 py-3 rounded-full font-medium transition-all duration-300",
                 selectedCategory === category.id
-                  ? "bg-gray-900 text-white shadow-lg scale-105"
-                  : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
+                  ? "bg-amber-700 text-white shadow-lg scale-105"
+                  : "bg-white text-amber-800 border border-amber-300 hover:bg-amber-50"
               )}
             >
               {category.name}
@@ -160,7 +160,7 @@ const Products = () => {
 
         {/* お問い合わせセクション */}
         <div className={cn(
-          "mt-20 p-12 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl text-center transition-all duration-1000 text-white",
+          "mt-20 p-12 bg-gradient-to-br from-amber-900 to-amber-800 rounded-2xl text-center transition-all duration-1000 text-white",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}
         style={{ transitionDelay: "400ms" }}
@@ -176,7 +176,7 @@ const Products = () => {
             
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-gray-900 rounded-lg font-bold hover:bg-gray-100 transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-amber-900 rounded-lg font-bold hover:bg-amber-50 transition-all duration-300 hover:scale-105"
             >
               <span>お問い合わせ・ご相談</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

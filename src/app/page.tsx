@@ -28,9 +28,6 @@ const Footer = dynamic(() => import('../components/Footer'), {
   ssr: true,
 })
 
-const NeuroOptimizer = dynamic(() => import('../components/NeuroOptimizer'), {
-  ssr: false,
-})
 
 // スケルトンローダーコンポーネント
 function HeroSkeleton() {
@@ -79,11 +76,6 @@ export default function HomePage() {
   return (
     <>
       <StructuredData />
-      <Suspense fallback={null}>
-        <NeuroOptimizer>
-          <div className="hidden" />
-        </NeuroOptimizer>
-      </Suspense>
       <Header />
       <main>
         <Suspense fallback={<HeroSkeleton />}>
